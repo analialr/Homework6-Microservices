@@ -15,15 +15,15 @@ public class Opportunity {
     private Product product;
     private int quantity;
 
-    @JoinColumn(name = "decision_maker")
+    @Column(name = "decision_maker")
     private Long decisionMaker;
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @JoinColumn(name = "account_id")
+    @Column(name = "account_id")
     private Long account;
 
-    @JoinColumn(name = "sales_rep_id")
+    @Column(name = "sales_rep_id")
     private Long salesRep;
 
     public Opportunity() {

@@ -9,13 +9,13 @@ public class Lead {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", unique=true, nullable=false)
-    private Integer id;
+    private Long id;
     private String name;
     private String email;
     private int phoneNumber;
     private String companyName;
 
-    @JoinColumn(name = "sales_rep_id")
+    @Column(name = "sales_rep_id")
     private Long salesRep;
 
     public Lead() {
@@ -36,7 +36,7 @@ public class Lead {
         this.salesRep = salesRep;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

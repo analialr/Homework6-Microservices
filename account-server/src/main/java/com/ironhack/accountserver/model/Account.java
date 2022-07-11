@@ -1,6 +1,5 @@
 package com.ironhack.accountserver.model;
 
-
 import com.ironhack.accountserver.enums.Industry;
 
 import javax.persistence.*;
@@ -18,9 +17,11 @@ public class Account {
     private Industry industry;
     private String city;
     private String country;
-    private List<Long> contacList;
 
+    /*
+    private List<Long> contacList;
     private List<Long> opportunityList;
+     */
 
     public Account() {
     }
@@ -68,6 +69,7 @@ public class Account {
         this.country = country;
     }
 
+    /*
     public List<Long> getContacList() {
         return this.contacList;
     }
@@ -83,4 +85,7 @@ public class Account {
     public void setOpportunityList(List<Long> opportunityList) {
         this.opportunityList = opportunityList;
     }
+
+     */
+
 }

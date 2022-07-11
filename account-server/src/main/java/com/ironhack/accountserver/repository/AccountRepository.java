@@ -13,14 +13,15 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     @Query("SELECT AVG(employeeCount) FROM Account")
     Optional<Double> findMeanEmployeeCount();
 
+    /*
     //Show accounts
     @Query("SELECT ac.id, c.companyName FROM Contact c JOIN c.account ac")
     List<Object[]> AllAccounts();
+     */
 
     //Median Report
     @Query("SELECT employeeCount FROM Account order by employeeCount")
     int[]MedianEmployeeCountStep1();
-
 
     //Report Maximum  employee count for all Accounts
     @Query("SELECT MAX(employeeCount) FROM Account")

@@ -13,6 +13,8 @@ public interface OpportunityRepository extends JpaRepository <Opportunity, Long>
 
     Optional<Opportunity> findById(Long id);
 
+    /*
+
     //---------------- BY PRODUCT ----------------//
 
     //    A count of all Opportunities by the product can be displayed by typing “Report Opportunity by the product”
@@ -125,4 +127,5 @@ public interface OpportunityRepository extends JpaRepository <Opportunity, Long>
 
     @Query("SELECT count(o) FROM Account a JOIN a.opportunityList o WHERE o.status = 'OPEN' GROUP BY a.city")
     List<Object[]> countOppsByOpenAndCity(@Param("status") Status status);
+     */
 }
