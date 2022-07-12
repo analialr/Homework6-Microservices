@@ -15,10 +15,15 @@ public interface OpportunityServiceClient {
     public List<Opportunity> findAll();
     @GetMapping("/opportunities/{id}")
     public Opportunity findById(@PathVariable Long id);
-
     @PostMapping("/opportunities")
     public Opportunity create(@RequestBody Opportunity opportunity);
-
     @DeleteMapping("/opportunities/{id}")
     public void delete(@PathVariable Long id);
+
+    @GetMapping("/mean-product-quantity")
+    public Double findMeanProductQuantity();
+    @GetMapping("/max-product-quantity")
+    public Integer findMaxProductQuantity();
+    @GetMapping("/min-product-quantity")
+    public Integer findMinProductQuantity();
 }

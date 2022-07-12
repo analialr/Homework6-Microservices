@@ -41,4 +41,46 @@ public class OpportunityControllerImpl implements OpportunityController {
     public void delete(@PathVariable Long id) {
         opportunityRepository.delete(opportunityRepository.findById(id).get());
     }
+
+    // QUERIES BY PRODUCT //
+    @GetMapping("/count-opp-by-product")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countOpportunitiesByProduct() {
+        return opportunityRepository.countOpportunitiesByProduct();
+    }
+    @GetMapping("/count-opp-by-product-closed-won")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countOpportunitiesByProductAndStatusCLOSED_WON() {
+        return opportunityRepository.countOpportunitiesByProductAndStatusCLOSED_WON();
+    }
+    @GetMapping("/count-opp-by-product-closed-lost")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countOpportunitiesByProductAndStatusCLOSED_LOST() {
+        return opportunityRepository.countOpportunitiesByProductAndStatusCLOSED_LOST();
+    }
+    @GetMapping("/count-opp-by-product-open")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countOpportunitiesByProductAndStatusOPEN() {
+        return opportunityRepository.countOpportunitiesByProductAndStatusOPEN();
+    }
+
+    // QUANTITY STATES QUERIES //
+    @GetMapping("/mean-product-quantity")
+    @ResponseStatus(HttpStatus.OK)
+    public Double findMeanProductQuantity() {
+        return opportunityRepository.findMeanProductQuantity().get();
+    }
+
+    @GetMapping("/max-product-quantity")
+    @ResponseStatus(HttpStatus.OK)
+    public Integer findMaxProductQuantity() {
+        return opportunityRepository.findMaxProductQuantity().get();
+    }
+
+    @GetMapping("/min-product-quantity")
+    @ResponseStatus(HttpStatus.OK)
+    public Integer findMinProductQuantity() {
+        return opportunityRepository.findMinProductQuantity().get();
+    }
+
 }

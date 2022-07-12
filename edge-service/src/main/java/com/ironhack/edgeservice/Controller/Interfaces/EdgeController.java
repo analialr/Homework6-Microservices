@@ -34,4 +34,25 @@ public interface EdgeController {
 
     void convertLead(@PathVariable Long id, @RequestBody Opportunity opportunity);
 
+    // MAX METHODS //
+    Integer maxEmployeeCount();
+
+    // MIN METHODS //
+    Integer minEmployeeCount();
+
+    // MEAN METHODS //
+    double meanEmployeeCount();
+
+    // QUERIES BY PRODUCT //
+
+    List<Object[] >  countOpportunitiesByProduct();
+    List<Object[] > countOpportunitiesByProductAndStatusCLOSED_WON();
+    List<Object[] > countOpportunitiesByProductAndStatusCLOSED_LOST();
+    List<Object[] > countOpportunitiesByProductAndStatusOPEN();
+
+    // QUANTITY STATES QUERIES //
+    Double findMeanProductQuantity();
+    Integer findMaxProductQuantity();
+    Integer findMinProductQuantity();
+
 }

@@ -14,7 +14,6 @@ public interface OpportunityRepository extends JpaRepository <Opportunity, Long>
     Optional<Opportunity> findById(Long id);
 
 
-
     //---------------- BY PRODUCT ----------------//
 
     //    A count of all Opportunities by the product can be displayed by typing “Report Opportunity by the product”
@@ -22,13 +21,10 @@ public interface OpportunityRepository extends JpaRepository <Opportunity, Long>
     List<Object[] >  countOpportunitiesByProduct();
     // SELECT o.product, count(*) FROM opportunity o GROUP BY o.product
 
-
-
     //    A count of all CLOSED_WON Opportunities by the product can be displayed by typing “Report CLOSED-WON by the product”
     @Query(value = "SELECT o.product, count(o) FROM Opportunity o WHERE o.status= 'CLOSED_WON' GROUP BY o.product")
     List<Object[] > countOpportunitiesByProductAndStatusCLOSED_WON();
     //SELECT o.product, count(*) FROM Opportunity o WHERE o.status='CLOSED_WON' GROUP BY o.product;
-
 
 
     //    A count of all CLOSED_LOST Opportunities by the product can be displayed by typing “Report CLOSED-LOST by the product”
@@ -94,10 +90,6 @@ public interface OpportunityRepository extends JpaRepository <Opportunity, Long>
     //SELECT AVG(quantity) FROM opportunity;
     @Query("SELECT AVG(quantity) FROM Opportunity")
     Optional<Double> findMeanProductQuantity();
-
-    //SELECT quantity FROM opportunity ORDER BY quantity;
-    @Query("SELECT quantity FROM Opportunity order by quantity")
-    int[]findMedianQuantityStep1();
 
     //SELECT MAX(quantity) FROM opportunity;
     @Query("SELECT MAX(quantity) FROM Opportunity")

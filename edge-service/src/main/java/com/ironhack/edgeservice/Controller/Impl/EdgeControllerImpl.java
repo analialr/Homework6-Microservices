@@ -119,4 +119,64 @@ public class EdgeControllerImpl implements EdgeController {
         edgeService.convertLead(id, opportunity);
     }
 
+    // MAX QUERIES //
+    @GetMapping("/max-employee-count")
+    @ResponseStatus(HttpStatus.OK)
+    public Integer maxEmployeeCount() {
+        return accountServiceClient.maxEmployeeCount();
+    }
+
+    // MIN QUERIES //
+    @GetMapping("/min-employee-count")
+    @ResponseStatus(HttpStatus.OK)
+    public Integer minEmployeeCount() {
+        return accountServiceClient.minEmployeeCount();
+    }
+
+    // MEAN QUERIES //
+    @GetMapping("/mean-employee-count")
+    @ResponseStatus(HttpStatus.OK)
+    public double meanEmployeeCount() {
+        return accountServiceClient.meanEmployeeCount();
+    }
+
+    // QUERIES OPP BY PRODUCT //
+    @GetMapping("/count-opp-by-product")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countOpportunitiesByProduct() {
+        return accountServiceClient.countOpportunitiesByProduct();
+    }
+    @GetMapping("/count-opp-by-product-closed-won")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countOpportunitiesByProductAndStatusCLOSED_WON() {
+        return accountServiceClient.countOpportunitiesByProductAndStatusCLOSED_WON();
+    }
+    @GetMapping("/count-opp-by-product-closed-lost")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countOpportunitiesByProductAndStatusCLOSED_LOST() {
+        return accountServiceClient.countOpportunitiesByProductAndStatusCLOSED_LOST();
+    }
+    @GetMapping("/count-opp-by-product-open")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countOpportunitiesByProductAndStatusOPEN() {
+        return accountServiceClient.countOpportunitiesByProductAndStatusOPEN();
+    }
+
+    // QUANTITY STATES QUERIES //
+    @GetMapping("/mean-product-quantity")
+    @ResponseStatus(HttpStatus.OK)
+    public Double findMeanProductQuantity() {
+        return opportunityServiceClient.findMeanProductQuantity();
+    }
+    @GetMapping("/max-product-quantity")
+    @ResponseStatus(HttpStatus.OK)
+    public Integer findMaxProductQuantity() {
+        return opportunityServiceClient.findMaxProductQuantity();
+    }
+    @GetMapping("/min-product-quantity")
+    @ResponseStatus(HttpStatus.OK)
+    public Integer findMinProductQuantity() {
+        return opportunityServiceClient.findMinProductQuantity();
+    }
+
 }

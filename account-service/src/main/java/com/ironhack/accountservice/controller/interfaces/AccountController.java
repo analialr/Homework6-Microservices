@@ -9,4 +9,7 @@ public interface AccountController {
     Account findById(Long id);
     Account create(Account account);
     void delete(Long id);
+    Integer maxEmployeeCount();
+    Integer minEmployeeCount();
+    double meanEmployeeCount();
 }

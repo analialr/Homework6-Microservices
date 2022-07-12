@@ -23,4 +23,22 @@ public interface AccountServiceClient {
     @DeleteMapping("/accounts/{id}")
     public void delete(@PathVariable Long id);
 
+    @GetMapping("/account-max")
+    public Integer maxEmployeeCount();
+
+    @GetMapping("/account-min")
+    public Integer minEmployeeCount();
+
+    @GetMapping("/account-mean")
+    public double meanEmployeeCount();
+
+    @GetMapping("/count-opp-by-product")
+    List<Object[] >  countOpportunitiesByProduct();
+    @GetMapping("/count-opp-by-product-closed-won")
+    List<Object[] > countOpportunitiesByProductAndStatusCLOSED_WON();
+    @GetMapping("/count-opp-by-product-closed-lost")
+    List<Object[] > countOpportunitiesByProductAndStatusCLOSED_LOST();
+    @GetMapping("/count-opp-by-product-open")
+    List<Object[] > countOpportunitiesByProductAndStatusOPEN();
+
 }

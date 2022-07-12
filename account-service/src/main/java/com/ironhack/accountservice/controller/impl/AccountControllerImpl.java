@@ -38,4 +38,22 @@ public class AccountControllerImpl {
     public void delete(@PathVariable Long id) {
         accountRepository.delete(accountRepository.findById(id).get());
     }
+
+    @GetMapping("/account-max")
+    @ResponseStatus(HttpStatus.OK)
+    public Integer maxEmployeeCount() {
+        return accountRepository.MaxEmployeeCount().get();
+    }
+
+    @GetMapping("/account-min")
+    @ResponseStatus(HttpStatus.OK)
+    public Integer minEmployeeCount() {
+        return accountRepository.MinEmployeeCount().get();
+    }
+
+    @GetMapping("/account-mean")
+    @ResponseStatus(HttpStatus.OK)
+    public double meanEmployeeCount() {
+        return accountRepository.findMeanEmployeeCount().get();
+    }
 }
