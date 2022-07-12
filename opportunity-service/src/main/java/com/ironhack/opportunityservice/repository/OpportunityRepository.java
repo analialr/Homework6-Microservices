@@ -13,7 +13,7 @@ public interface OpportunityRepository extends JpaRepository <Opportunity, Long>
 
     Optional<Opportunity> findById(Long id);
 
-    /*
+
 
     //---------------- BY PRODUCT ----------------//
 
@@ -22,10 +22,13 @@ public interface OpportunityRepository extends JpaRepository <Opportunity, Long>
     List<Object[] >  countOpportunitiesByProduct();
     // SELECT o.product, count(*) FROM opportunity o GROUP BY o.product
 
+
+
     //    A count of all CLOSED_WON Opportunities by the product can be displayed by typing “Report CLOSED-WON by the product”
     @Query(value = "SELECT o.product, count(o) FROM Opportunity o WHERE o.status= 'CLOSED_WON' GROUP BY o.product")
     List<Object[] > countOpportunitiesByProductAndStatusCLOSED_WON();
     //SELECT o.product, count(*) FROM Opportunity o WHERE o.status='CLOSED_WON' GROUP BY o.product;
+
 
 
     //    A count of all CLOSED_LOST Opportunities by the product can be displayed by typing “Report CLOSED-LOST by the product”
@@ -37,6 +40,7 @@ public interface OpportunityRepository extends JpaRepository <Opportunity, Long>
     @Query(value = "SELECT o.product, count(o) FROM Opportunity o WHERE o.status='OPEN' GROUP BY o.product")
     List<Object[] > countOpportunitiesByProductAndStatusOPEN();
 
+    /*
 
     //---------------- BY INDUSTRY ----------------//
 
@@ -56,6 +60,9 @@ public interface OpportunityRepository extends JpaRepository <Opportunity, Long>
     @Query("SELECT a.industry, count(o)  FROM Account a JOIN a.opportunityList o WHERE o.status= 'OPEN' GROUP BY a.industry")
     List<Object[] > countOpportunitiesByIndustryAndStatusOPEN();
 
+    */
+
+    /*
 
     //---------------- BY SALESREP ----------------//
 
@@ -81,6 +88,7 @@ public interface OpportunityRepository extends JpaRepository <Opportunity, Long>
     @Query(value = "SELECT o.id, count(o) FROM Opportunity o WHERE o.status= 'OPEN' GROUP BY o.id")
     List<Object[] > countOpportunitiesByProductAndSalesRepOPEN();
 
+    */
 
     //---------------- QUANTITY STATES ----------------//
     //SELECT AVG(quantity) FROM opportunity;
@@ -98,6 +106,8 @@ public interface OpportunityRepository extends JpaRepository <Opportunity, Long>
     //SELECT MIN(quantity) FROM opportunity;
     @Query("SELECT MIN(quantity) FROM Opportunity")
     Optional<Integer> findMinProductQuantity();
+
+    /*
 
     //---------------- BY COUNTRY ----------------//
 
