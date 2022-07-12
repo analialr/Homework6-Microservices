@@ -36,56 +36,6 @@ public interface OpportunityRepository extends JpaRepository <Opportunity, Long>
     @Query(value = "SELECT o.product, count(o) FROM Opportunity o WHERE o.status='OPEN' GROUP BY o.product")
     List<Object[] > countOpportunitiesByProductAndStatusOPEN();
 
-    /*
-
-    //---------------- BY INDUSTRY ----------------//
-
-    //    A count of all Opportunities by industry can be displayed by typing “Report Opportunity by Industry”
-    @Query("SELECT a.industry, count(o)  FROM Account a JOIN a.opportunityList o GROUP BY a.industry")
-    List<Object[] > countOpportunitiesByIndustry();
-
-    //    A count of all CLOSED_WON Opportunities by industry can be displayed by typing “Report CLOSED-WON by Industry”
-    @Query("SELECT a.industry, count(o)  FROM Account a JOIN a.opportunityList o WHERE o.status= 'CLOSED_WON' GROUP BY a.industry")
-    List<Object[] > countOpportunitiesByIndustryAndStatusCLOSED_WON();
-
-    //    A count of all CLOSED_LOST Opportunities by industry can be displayed by typing “Report CLOSED-LOST by Industry”
-    @Query("SELECT a.industry, count(o)  FROM Account a JOIN a.opportunityList o WHERE o.status= 'CLOSED_LOST' GROUP BY a.industry")
-    List<Object[] > countOpportunitiesByIndustryAndStatusCLOSED_LOST();
-
-    //    A count of all OPEN Opportunities by industry can be displayed by typing “Report OPEN by Industry”
-    @Query("SELECT a.industry, count(o)  FROM Account a JOIN a.opportunityList o WHERE o.status= 'OPEN' GROUP BY a.industry")
-    List<Object[] > countOpportunitiesByIndustryAndStatusOPEN();
-
-    */
-
-    /*
-
-    //---------------- BY SALESREP ----------------//
-
-    // A count of Leads by SalesRep can be displayed by typing “Report Lead by SalesRep”
-    //SELECT s.id, count(*) FROM lead_table l JOIN sales_rep s ON l.sales_rep_id = s.id GROUP BY s.id;
-    @Query (value = "SELECT l.id, count(l) FROM Lead l JOIN l.salesRep GROUP BY l.id")
-    List<Object[] > countLeadsBySalesRep();
-
-    //A count of all Opportunities by SalesRep can be displayed by typing “Report Opportunity by SalesRep”
-    //SELECT o.id, count(*) FROM opportunity o JOIN sales_rep s ON o.sales_rep_id = s.id GROUP BY o.id;
-    @Query (value = "SELECT o.id, count(o) FROM Opportunity o JOIN o.salesRep GROUP BY o.id")
-    List<Object[] > countOpportunityBySalesRep();
-
-    //SELECT o.id, count(*) FROM opportunity o WHERE o.status='CLOSED_WON' GROUP BY o.id;
-    @Query(value = "SELECT o.id, count(o) FROM Opportunity o WHERE o.status= 'CLOSED_WON' GROUP BY o.id")
-    List<Object[] > countOpportunitiesByProductAndSalesRepCLOSED_WON();
-
-    //SELECT o.id, count(*) FROM opportunity o WHERE o.status='CLOSED_LOST' GROUP BY o.id;
-    @Query(value = "SELECT o.id, count(o) FROM Opportunity o WHERE o.status= 'CLOSED_LOST' GROUP BY o.id")
-    List<Object[] > countOpportunitiesByProductAndSalesRepCLOSED_LOST();
-
-    //SELECT o.id, count(*) FROM opportunity o WHERE o.status='OPEN' GROUP BY o.id;
-    @Query(value = "SELECT o.id, count(o) FROM Opportunity o WHERE o.status= 'OPEN' GROUP BY o.id")
-    List<Object[] > countOpportunitiesByProductAndSalesRepOPEN();
-
-    */
-
     //---------------- QUANTITY STATES ----------------//
     //SELECT AVG(quantity) FROM opportunity;
     @Query("SELECT AVG(quantity) FROM Opportunity")
@@ -99,9 +49,38 @@ public interface OpportunityRepository extends JpaRepository <Opportunity, Long>
     @Query("SELECT MIN(quantity) FROM Opportunity")
     Optional<Integer> findMinProductQuantity();
 
+
+
+
+   // Estos 4 de aqui abajo no necesitan query raro
+
+
+    //SELECT o.id, count(*) FROM opportunity o WHERE o.status='CLOSED_WON' GROUP BY o.id;
+    @Query(value = "SELECT o.id, count(o) FROM Opportunity o WHERE o.status= 'CLOSED_WON' GROUP BY o.id")
+    List<Object[] > countOpportunitiesByProductAndSalesRepCLOSED_WON();
+
+    //SELECT o.id, count(*) FROM opportunity o WHERE o.status='CLOSED_LOST' GROUP BY o.id;
+    @Query(value = "SELECT o.id, count(o) FROM Opportunity o WHERE o.status= 'CLOSED_LOST' GROUP BY o.id")
+    List<Object[] > countOpportunitiesByProductAndSalesRepCLOSED_LOST();
+
+    //SELECT o.id, count(*) FROM opportunity o WHERE o.status='OPEN' GROUP BY o.id;
+    @Query(value = "SELECT o.id, count(o) FROM Opportunity o WHERE o.status= 'OPEN' GROUP BY o.id")
+    List<Object[] > countOpportunitiesByProductAndSalesRepOPEN();
+
+    //---------------- BY SALESREP ----------------//
+
+
+    //SELECT o.id, count(*) FROM opportunity o JOIN sales_rep s ON o.sales_rep_id = s.id GROUP BY o.id;
+    @Query (value = "SELECT o.salesRep, count(o) FROM Opportunity o GROUP BY o.salesRep")
+    List<Object[] > countOpportunityBySalesRep();
+
+
+
+
     /*
 
     //---------------- BY COUNTRY ----------------//
+    @Query(
 
     @Query("SELECT a.country, count(o) FROM Account a JOIN a.opportunityList o GROUP BY a.country")
     List<Object[]> countOppsByCountry();
@@ -130,4 +109,26 @@ public interface OpportunityRepository extends JpaRepository <Opportunity, Long>
     @Query("SELECT count(o) FROM Account a JOIN a.opportunityList o WHERE o.status = 'OPEN' GROUP BY a.city")
     List<Object[]> countOppsByOpenAndCity(@Param("status") Status status);
      */
+
+        /*
+
+    //---------------- BY INDUSTRY ----------------//
+
+    //    A count of all Opportunities by industry can be displayed by typing “Report Opportunity by Industry”
+    @Query("SELECT a.industry, count(o)  FROM Account a JOIN a.opportunityList o GROUP BY a.industry")
+    List<Object[] > countOpportunitiesByIndustry();
+
+    //    A count of all CLOSED_WON Opportunities by industry can be displayed by typing “Report CLOSED-WON by Industry”
+    @Query("SELECT a.industry, count(o)  FROM Account a JOIN a.opportunityList o WHERE o.status= 'CLOSED_WON' GROUP BY a.industry")
+    List<Object[] > countOpportunitiesByIndustryAndStatusCLOSED_WON();
+
+    //    A count of all CLOSED_LOST Opportunities by industry can be displayed by typing “Report CLOSED-LOST by Industry”
+    @Query("SELECT a.industry, count(o)  FROM Account a JOIN a.opportunityList o WHERE o.status= 'CLOSED_LOST' GROUP BY a.industry")
+    List<Object[] > countOpportunitiesByIndustryAndStatusCLOSED_LOST();
+
+    //    A count of all OPEN Opportunities by industry can be displayed by typing “Report OPEN by Industry”
+    @Query("SELECT a.industry, count(o)  FROM Account a JOIN a.opportunityList o WHERE o.status= 'OPEN' GROUP BY a.industry")
+    List<Object[] > countOpportunitiesByIndustryAndStatusOPEN();
+
+    */
 }
