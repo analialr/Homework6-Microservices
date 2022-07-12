@@ -1,4 +1,4 @@
-package com.ironhack.accountserver;
+package com.ironhack.accountservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,10 +8,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableFeignClients
 @EnableEurekaClient
-public class AccountServerApplication {
+public class AccountServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AccountServerApplication.class, args);
+		SpringApplication.run(AccountServiceApplication.class, args);
 	}
 
 }

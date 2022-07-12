@@ -1,9 +1,8 @@
-package com.ironhack.accountserver.model;
+package com.ironhack.accountservice.model;
 
-import com.ironhack.accountserver.enums.Industry;
+import com.ironhack.accountservice.enums.Industry;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "account_table")

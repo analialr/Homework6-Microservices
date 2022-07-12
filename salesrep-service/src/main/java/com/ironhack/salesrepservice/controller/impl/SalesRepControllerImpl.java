@@ -4,9 +4,8 @@ import com.ironhack.salesrepservice.controller.interfaces.SalesRepController;
 import com.ironhack.salesrepservice.model.SalesRep;
 import com.ironhack.salesrepservice.repository.SalesRepRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,23 +16,28 @@ public class SalesRepControllerImpl implements SalesRepController {
     @Autowired
     public SalesRepRepository salesRepRepository;
 
+    @GetMapping("/salesreps")
+    @ResponseStatus(HttpStatus.OK)
     public List<SalesRep> findAll() {
         return salesRepRepository.findAll();
     }
 
-
+    @GetMapping("/salesreps/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public SalesRep findById(@PathVariable Long id) {
         Optional<SalesRep> optionalSalesRep = salesRepRepository.findById(id);
         return  optionalSalesRep.get();
     }
 
-
+    @PostMapping("/salesreps")
+    @ResponseStatus(HttpStatus.CREATED)
     public SalesRep create(@RequestBody SalesRep opportunity) {
         return salesRepRepository.save(opportunity);
     }
 
-
-    public void delete(Long id) {
+    @DeleteMapping("/salesreps/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void delete(@PathVariable Long id) {
         salesRepRepository.delete(salesRepRepository.findById(id).get());
     }
 

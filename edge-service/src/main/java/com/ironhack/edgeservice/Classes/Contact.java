@@ -1,15 +1,11 @@
 package com.ironhack.edgeservice.Classes;
 
 public class Contact {
-
-    private Long id;
     private String name;
     private String email;
     private int phoneNumber;
     private String companyName;
-
     private Long account;
-
     private Long salesRep;
 
     public Contact() {
@@ -38,10 +34,6 @@ public class Contact {
 
     public void setSalesRep(Long salesRep) {
         this.salesRep = salesRep;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getName() {

@@ -1,6 +1,6 @@
-package com.ironhack.accountserver.controller.interfaces;
+package com.ironhack.accountservice.controller.interfaces;
 
-import com.ironhack.accountserver.model.Account;
+import com.ironhack.accountservice.model.Account;
 
 import java.util.List;
 

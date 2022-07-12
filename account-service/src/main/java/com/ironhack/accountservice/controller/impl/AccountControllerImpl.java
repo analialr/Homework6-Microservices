@@ -1,35 +1,41 @@
-package com.ironhack.accountserver.controller.impl;
+package com.ironhack.accountservice.controller.impl;
 
-import com.ironhack.accountserver.model.Account;
-import com.ironhack.accountserver.repository.AccountRepository;
+import com.ironhack.accountservice.model.Account;
+import com.ironhack.accountservice.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@RestController
 public class AccountControllerImpl {
     @Autowired
     public AccountRepository accountRepository;
 
+    @GetMapping("/accounts")
+    @ResponseStatus(HttpStatus.OK)
     public List<Account> findAll() {
         return accountRepository.findAll();
     }
 
-
+    @GetMapping("/accounts/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Account findById(@PathVariable Long id) {
         Optional<Account> optionalContact= accountRepository.findById(id);
         return  optionalContact.get();
     }
 
-
+    @PostMapping("/accounts")
+    @ResponseStatus(HttpStatus.CREATED)
     public Account create(@RequestBody Account contact) {
         return accountRepository.save(contact);
     }
 
-
-    public void delete(Long id) {
+    @DeleteMapping("/accounts/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void delete(@PathVariable Long id) {
         accountRepository.delete(accountRepository.findById(id).get());
     }
 }

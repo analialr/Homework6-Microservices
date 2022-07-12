@@ -7,7 +7,6 @@ public class Lead {
     private String email;
     private int phoneNumber;
     private String companyName;
-
     private Long salesRep;
 
     public Lead() {

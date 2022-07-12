@@ -1,4 +1,4 @@
-package com.ironhack.accountserver;
+package com.ironhack.accountservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
