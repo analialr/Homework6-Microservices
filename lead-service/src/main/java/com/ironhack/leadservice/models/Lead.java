@@ -1,6 +1,5 @@
 package com.ironhack.leadservice.models;
 
-
 import javax.persistence.*;
 
 @Entity
@@ -80,3 +79,4 @@ public class Lead {
         this.salesRep = salesRep;
     }
 }
+

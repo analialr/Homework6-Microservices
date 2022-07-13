@@ -35,7 +35,7 @@ public class ContactControllerImpl implements ContactController {
     }
 
     @DeleteMapping("/contacts/{id}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         contactRepository.delete(contactRepository.findById(id).get());
     }

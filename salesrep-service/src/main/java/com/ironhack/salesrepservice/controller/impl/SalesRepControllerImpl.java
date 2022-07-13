@@ -36,7 +36,7 @@ public class SalesRepControllerImpl implements SalesRepController {
     }
 
     @DeleteMapping("/salesreps/{id}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         salesRepRepository.delete(salesRepRepository.findById(id).get());
     }

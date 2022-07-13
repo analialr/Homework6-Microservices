@@ -3,11 +3,13 @@ package com.ironhack.edgeservice.Controller.Impl;
 import com.ironhack.edgeservice.Classes.*;
 import com.ironhack.edgeservice.Client.*;
 import com.ironhack.edgeservice.Controller.Interfaces.EdgeController;
+import com.ironhack.edgeservice.Enums.Status;
 import com.ironhack.edgeservice.Service.Interfaces.EdgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.transform.OutputKeys;
 import java.util.List;
 
 @RestController
@@ -184,4 +186,67 @@ public class EdgeControllerImpl implements EdgeController {
     @GetMapping("/leads-by-salesrep")
     @ResponseStatus(HttpStatus.OK)
     public List<Object[]> countLeadsBySalesRep() { return leadServiceClient.countLeadsBySalesRep();}
+
+
+    // ACCOUNT MEET OPPORTUNITY :D //
+    @GetMapping("/opps-by-country")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countOppsByCountry() {
+        return accountServiceClient.countOppsByCountry();
+    }
+    @GetMapping("/opps-by-closewon-country")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countOppsByClosedWonStatusAndCountry(Status status) {
+        return accountServiceClient.countOppsByClosedWonStatusAndCountry(Status.CLOSED_WON);
+    }
+    @GetMapping("/opps-by-losewon-country")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countOppsByClosedLostAndCountry(Status status) {
+        return accountServiceClient.countOppsByClosedLostAndCountry(Status.CLOSED_LOST);
+    }
+    @GetMapping("/opps-by-open-country")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countOppsByOpenAndCountry(Status status) {
+        return accountServiceClient.countOppsByOpenAndCountry(Status.OPEN);
+    }
+    @GetMapping("/opps-by-city")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countOppsByCity() {
+        return accountServiceClient.countOppsByCity();
+    }
+    @GetMapping("/opps-by-close-won-city")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countOppsByClosedWonAndCity(Status status) {
+        return accountServiceClient.countOppsByClosedWonAndCity(Status.CLOSED_WON);
+    }
+    @GetMapping("/opps-by-close-lost-city")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countOppsByClosedLostAndCity(Status status) {
+        return accountServiceClient.countOppsByClosedLostAndCity(Status.CLOSED_LOST);
+    }
+    @GetMapping("/opps-open-by-city")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countOppsByOpenAndCity(Status status) {
+        return accountServiceClient.countOppsByOpenAndCity(Status.OPEN);
+    }
+    @GetMapping("/opps-by-industry")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countOpportunitiesByIndustry() {
+        return accountServiceClient.countOpportunitiesByIndustry();
+    }
+    @GetMapping("/opps-by-industry-close-won")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countOpportunitiesByIndustryAndStatusCLOSED_WON() {
+        return accountServiceClient.countOpportunitiesByIndustryAndStatusCLOSED_WON();
+    }
+    @GetMapping("/opps-by-industry-close-lost")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countOpportunitiesByIndustryAndStatusCLOSED_LOST() {
+        return accountServiceClient.countOpportunitiesByIndustryAndStatusCLOSED_LOST();
+    }
+    @GetMapping("/opps-by-industry-open")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countOpportunitiesByIndustryAndStatusOPEN() {
+        return accountServiceClient.countOpportunitiesByIndustryAndStatusOPEN();
+    }
 }

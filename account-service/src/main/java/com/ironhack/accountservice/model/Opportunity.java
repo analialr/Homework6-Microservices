@@ -19,9 +19,9 @@ public class Opportunity {
     private Long decisionMaker;
     @Enumerated(EnumType.STRING)
     private Status status;
-
-    @Column(name = "account_id")
-    private Long account;
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
 
     @Column(name = "sales_rep_id")
     private Long salesRep;
@@ -37,7 +37,7 @@ public class Opportunity {
         this.salesRep = salesRep;
     }
     public Opportunity(Product product, int quantity, Long decisionMaker, Status status,
-                       Long account, Long salesRep) {
+                       Account account, Long salesRep) {
         this.product = product;
         this.quantity = quantity;
         this.decisionMaker = decisionMaker;
@@ -45,8 +45,6 @@ public class Opportunity {
         this.account = account;
         this.salesRep = salesRep;
     }
-
-
 
     public Long getId() {
         return id;
@@ -84,11 +82,11 @@ public class Opportunity {
         this.status = status;
     }
 
-    public Long getAccount() {
+    public Account getAccount() {
         return account;
     }
 
-    public void setAccount(Long account) {
+    public void setAccount(Account account) {
         this.account = account;
     }
 

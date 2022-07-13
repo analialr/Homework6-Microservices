@@ -4,7 +4,6 @@ import com.ironhack.opportunityservice.controller.interfaces.OpportunityControll
 import com.ironhack.opportunityservice.models.Opportunity;
 import com.ironhack.opportunityservice.repository.OpportunityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +37,7 @@ public class OpportunityControllerImpl implements OpportunityController {
 
 
     @DeleteMapping("/opportunities/{id}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         opportunityRepository.delete(opportunityRepository.findById(id).get());
     }
