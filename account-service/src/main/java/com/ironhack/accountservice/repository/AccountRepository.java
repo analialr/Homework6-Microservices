@@ -22,17 +22,4 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     @Query("SELECT MIN(employeeCount) FROM Account")
     Optional<Integer> MinEmployeeCount();
 
-
-
-
-
-//    // Nuevo query para hacer
-//    @Query("SELECT a.id FROM Account a GROUP BY a.country")
-//    List<Object[]> findAccountsGroupByCountry();
-//
-//    @Query("SELECT a.id FROM Account a GROUP BY a.city")
-//    List<Object[]> findAccountsGroupByCity();
-//
-//    @Query("SELECT a.id FROM Account a GROUP BY a.industry")
-//    List<Object[]> findAccountsGroupByIndustry();
 }
