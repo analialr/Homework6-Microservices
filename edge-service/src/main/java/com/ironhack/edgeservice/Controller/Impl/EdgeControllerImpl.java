@@ -179,4 +179,9 @@ public class EdgeControllerImpl implements EdgeController {
         return opportunityServiceClient.findMinProductQuantity();
     }
 
+
+    // COUNT LEAD BY REP SALES
+    @GetMapping("/leads-by-salesrep")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countLeadsBySalesRep() { return leadServiceClient.countLeadsBySalesRep();}
 }

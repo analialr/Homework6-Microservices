@@ -23,4 +23,7 @@ public interface LeadServiceClient {
     @DeleteMapping("/leads/{id}")
     public void delete(@PathVariable Long id);
 
+    @GetMapping("/leads-by-salesrep")
+    public List<Object[]> countLeadsBySalesRep();
+
 }

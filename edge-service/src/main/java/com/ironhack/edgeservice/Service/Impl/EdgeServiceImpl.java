@@ -29,6 +29,7 @@ public class EdgeServiceImpl implements EdgeService {
         Lead lead1 = leadServiceClient.findById(id);
         Contact contact1 = new Contact(lead1.getName(), lead1.getEmail(), lead1.getPhoneNumber(), lead1.getCompanyName(), lead1.getSalesRep());
         Contact contact2 = contactServiceClient.create(contact1);
+        leadServiceClient.delete(id);
     }
 
     /*
@@ -40,4 +41,7 @@ public class EdgeServiceImpl implements EdgeService {
         return null;
     }
      */
+
+
+
 }

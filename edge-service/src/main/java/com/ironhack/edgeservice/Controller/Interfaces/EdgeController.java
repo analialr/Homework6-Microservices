@@ -1,8 +1,11 @@
 package com.ironhack.edgeservice.Controller.Interfaces;
 
 import com.ironhack.edgeservice.Classes.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 
@@ -55,4 +58,6 @@ public interface EdgeController {
     Integer findMaxProductQuantity();
     Integer findMinProductQuantity();
 
+    //GET LEADS BY SALES REP
+    public List<Object[]> countLeadsBySalesRep();
 }
