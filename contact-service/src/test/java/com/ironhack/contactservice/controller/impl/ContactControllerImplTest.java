@@ -91,4 +91,12 @@ class ContactControllerImplTest {
                 .andReturn();
         assertFalse(contactRepository.existsById(contact1.getId()));
     }
+    @Test
+    void findByAccount() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(get("/contacts/"+contact1.getAccount()))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+        assertTrue(mvcResult.getResponse().getContentAsString().contains("Mike"));
+    }
 }

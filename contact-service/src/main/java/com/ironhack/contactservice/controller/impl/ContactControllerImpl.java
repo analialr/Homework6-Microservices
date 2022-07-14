@@ -39,4 +39,9 @@ public class ContactControllerImpl implements ContactController {
     public void delete(@PathVariable Long id) {
         contactRepository.delete(contactRepository.findById(id).get());
     }
+
+    @Override
+    public List<Contact> findByAccount(Long id) {
+        return contactRepository.findByAccount(id);
+    }
 }

@@ -9,4 +9,5 @@ public interface ContactController {
     Contact findById(Long id);
     Contact create(Contact contact);
     void delete(Long id);
+    List<Contact> findByAccount(Long id);
 }
