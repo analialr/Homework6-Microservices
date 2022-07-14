@@ -1,15 +1,13 @@
 package com.ironhack.opportunityservice.repository;
 
-import com.ironhack.opportunityservice.enums.Status;
 import com.ironhack.opportunityservice.models.Opportunity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface OpportunityRepository extends JpaRepository <Opportunity, Long> {
+public interface OpportunityRepository extends JpaRepository<Opportunity, Long> {
 
     Optional<Opportunity> findById(Long id);
 
@@ -18,7 +16,7 @@ public interface OpportunityRepository extends JpaRepository <Opportunity, Long>
 
     //    A count of all Opportunities by the product can be displayed by typing “Report Opportunity by the product”
     @Query(value = "SELECT o.product, count(o) FROM Opportunity o GROUP BY o.product")
-    List<Object[] >  countOpportunitiesByProduct();
+    List<Object[] > countOpportunitiesByProduct();
     // SELECT o.product, count(*) FROM opportunity o GROUP BY o.product
 
     //    A count of all CLOSED_WON Opportunities by the product can be displayed by typing “Report CLOSED-WON by the product”
@@ -52,7 +50,7 @@ public interface OpportunityRepository extends JpaRepository <Opportunity, Long>
 
 
 
-   // Estos 4 de aqui abajo no necesitan query raro
+    // Estos 4 de aqui abajo no necesitan query raro
 
 
     //SELECT o.id, count(*) FROM opportunity o WHERE o.status='CLOSED_WON' GROUP BY o.id;

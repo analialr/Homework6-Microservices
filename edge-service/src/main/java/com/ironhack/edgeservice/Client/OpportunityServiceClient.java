@@ -26,4 +26,5 @@ public interface OpportunityServiceClient {
     public Integer findMaxProductQuantity();
     @GetMapping("/min-product-quantity")
     public Integer findMinProductQuantity();
+
 }

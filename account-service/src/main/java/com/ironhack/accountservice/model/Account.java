@@ -3,6 +3,7 @@ package com.ironhack.accountservice.model;
 import com.ironhack.accountservice.enums.Industry;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "account_table")
@@ -17,10 +18,8 @@ public class Account {
     private String city;
     private String country;
 
-    /*
-    private List<Long> contacList;
-    private List<Long> opportunityList;
-     */
+    @OneToMany(mappedBy = "account",fetch = FetchType.EAGER)
+    private List<Opportunity> opportunityList;
 
     public Account() {
     }

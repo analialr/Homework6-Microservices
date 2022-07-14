@@ -1,6 +1,7 @@
 package com.ironhack.edgeservice.Controller.Interfaces;
 
 import com.ironhack.edgeservice.Classes.*;
+import com.ironhack.edgeservice.Enums.Status;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,6 +59,31 @@ public interface EdgeController {
     Integer findMaxProductQuantity();
     Integer findMinProductQuantity();
 
-    //GET LEADS BY SALES REP
+    // GET LEADS BY SALES REP //
     public List<Object[]> countLeadsBySalesRep();
+
+    // ACCOUNT MEET OPPORTUNITY :D //
+    List<Object[]> countOppsByCountry();
+
+    List<Object[]> countOppsByClosedWonStatusAndCountry(Status status);
+
+    List<Object[]> countOppsByClosedLostAndCountry(Status status);
+
+    List<Object[]> countOppsByOpenAndCountry(Status status);
+
+    List<Object[]> countOppsByCity();
+
+    List<Object[]> countOppsByClosedWonAndCity(Status status);
+
+    List<Object[]> countOppsByClosedLostAndCity(Status status);
+
+    List<Object[]> countOppsByOpenAndCity(Status status);
+
+    List<Object[]> countOpportunitiesByIndustry();
+
+    List<Object[]> countOpportunitiesByIndustryAndStatusCLOSED_WON();
+
+    List<Object[]> countOpportunitiesByIndustryAndStatusCLOSED_LOST();
+
+    List<Object[]> countOpportunitiesByIndustryAndStatusOPEN();
 }
