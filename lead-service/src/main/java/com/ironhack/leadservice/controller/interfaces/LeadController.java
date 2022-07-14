@@ -9,4 +9,5 @@ public interface LeadController {
     Lead findById(Long id);
     Lead create(Lead lead);
     void delete(Long id);
+    List<Object[]> countLeadsBySalesRep();
 }

@@ -18,4 +18,6 @@ public interface LeadRepository extends JpaRepository<Lead, Long> {
     @Query(value = "SELECT l.salesRep, count(l) FROM Lead l GROUP BY l.salesRep")
     List<Object[] > countLeadsBySalesRep();
 
+
+
 }

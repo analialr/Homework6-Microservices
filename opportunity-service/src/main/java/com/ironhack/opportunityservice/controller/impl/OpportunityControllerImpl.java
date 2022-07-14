@@ -4,6 +4,7 @@ import com.ironhack.opportunityservice.controller.interfaces.OpportunityControll
 import com.ironhack.opportunityservice.models.Opportunity;
 import com.ironhack.opportunityservice.repository.OpportunityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -82,5 +83,31 @@ public class OpportunityControllerImpl implements OpportunityController {
     public Integer findMinProductQuantity() {
         return opportunityRepository.findMinProductQuantity().get();
     }
+
+
+    //COUNT BY
+    @GetMapping("/count-opp-by-prod-n-rep-closed-won")
+    @ResponseStatus(HttpStatus.OK)
+    List<Object[] > countOpportunitiesByProductAndSalesRepCLOSED_WON(){
+        return opportunityRepository.countOpportunitiesByProductAndSalesRepCLOSED_WON();
+    };
+
+    @GetMapping("/count-opp-by-prod-n-rep-closed-lost")
+    @ResponseStatus(HttpStatus.OK)
+    List<Object[] > countOpportunitiesByProductAndSalesRepCLOSED_LOST(){
+        return opportunityRepository.countOpportunitiesByProductAndSalesRepCLOSED_LOST();
+    };
+
+    @GetMapping("/count-opp-by-prod-n-rep-open")
+    @ResponseStatus(HttpStatus.OK)
+    List<Object[] > countOpportunitiesByProductAndSalesRepOPEN(){
+        return opportunityRepository.countOpportunitiesByProductAndSalesRepOPEN();
+    };
+
+    @GetMapping("/count-opp-by-salesrep")
+    @ResponseStatus(HttpStatus.OK)
+    List<Object[] > countOpportunityBySalesRep(){
+        return opportunityRepository.countOpportunityBySalesRep();
+    };
 
 }

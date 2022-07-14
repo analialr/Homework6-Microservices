@@ -42,4 +42,12 @@ public class LeadControllerImpl implements LeadController {
     public void delete(@PathVariable Long id) {
         leadRepository.delete(leadRepository.findById(id).get());
     }
+
+    @GetMapping("/leads-by-salesrep")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object[]> countLeadsBySalesRep() {
+        return leadRepository.countLeadsBySalesRep();
+    }
+
+
 }
