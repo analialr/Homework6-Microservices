@@ -12,6 +12,6 @@ public interface EdgeService {
     /*
     List<AccountDTO> showAccountsDTO (List<Account> accountList);
      */
-    void convertLead(@PathVariable Long id, @RequestBody Opportunity opportunity);
+    void convertLead(Long id, Opportunity opportunity);
 
 }

@@ -11,7 +11,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema homework_6
 -- -----------------------------------------------------
-DROP SCHEMA homework_6;
 CREATE SCHEMA IF NOT EXISTS homework_6 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
 USE homework_6;
 
@@ -29,10 +28,6 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
-INSERT INTO account_table (city, country, employee_count, industry) VALUES
-('Dolores', 'Uruguay', 45, 'PRODUCE'),
-('Zagreb', 'Croacia', 75, 'MEDICAL');
-
 -- -----------------------------------------------------
 -- Table `homework_6`.`contact`
 -- -----------------------------------------------------
@@ -49,10 +44,6 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
-INSERT INTO contact (account_id, company_name, email, name, phone_number, sales_rep_id) VALUES
-(1, 'Accenture', 'maria@accenture.com', 'Maria', 645776899, 3),
-(2, 'Tiempost', 'lucia@tiempost.com', 'Lucia', 645876899, 2);
-
 -- -----------------------------------------------------
 -- Table `homework_6`.`lead_table`
 -- -----------------------------------------------------
@@ -67,10 +58,6 @@ CREATE TABLE IF NOT EXISTS homework_6.lead_table (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
-
-INSERT INTO lead_table (company_name, email, name, phone_number, sales_rep_id) VALUES
-('Accenture', 'maria@accenture.com', 'Maria', 645776899, 3),
-('Tiempost', 'lucia@tiempost.com', 'Lucia', 645876899, 2);
 
 -- -----------------------------------------------------
 -- Table `homework_6`.`opportunity`
@@ -88,10 +75,6 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
-INSERT INTO opportunity (account_id, decision_maker, product, quantity, sales_rep_id) VALUES
-(1, 1456, 'HYBRID', 25, 3),
-(2, 5437, 'BOX', 40, 2);
-
 -- -----------------------------------------------------
 -- Table `homework_6`.`sales_rep`
 -- -----------------------------------------------------
@@ -103,6 +86,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
-INSERT INTO sales_rep (name) VALUES
-('Maria'),
-('Lucia');
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

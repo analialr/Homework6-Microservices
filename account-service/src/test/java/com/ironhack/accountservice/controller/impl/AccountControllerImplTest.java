@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -21,6 +22,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -29,6 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
+@ContextConfiguration(locations={"classpath:WEB-INF/application-context.xml"})
 class AccountControllerImplTest {
 
     @Autowired
@@ -48,11 +51,11 @@ class AccountControllerImplTest {
     @BeforeEach
     void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-        opportunity1 = new Opportunity(Product.BOX, 15, 1L, Status.OPEN, 2L);
-        opportunity2 = new Opportunity(Product.FLATBED, 30, 2L, Status.CLOSED_WON, 3L);
-        opportunity3 = new Opportunity(Product.FLATBED, 50, 2L, Status.CLOSED_LOST, 3L);
         account1 = new Account(30, Industry.MANUFACTURING, "Dolores", "Uruguay");
         account2 = new Account(25, Industry.MEDICAL, "Madrid", "Spain");
+        opportunity1 = new Opportunity(Product.BOX, 15, 1L, Status.OPEN, account1, 2L);
+        opportunity2 = new Opportunity(Product.FLATBED, 30, 2L, Status.CLOSED_WON, account1, 3L);
+        opportunity3 = new Opportunity(Product.FLATBED, 50, 2L, Status.CLOSED_LOST, account2, 3L);
         opportunityRepository.saveAll(List.of(opportunity1, opportunity2, opportunity3));
         accountRepository.saveAll(List.of(account1, account2));
 
@@ -108,62 +111,139 @@ class AccountControllerImplTest {
     }
 
     @Test
-    void maxEmployeeCount() {
+    void maxEmployeeCount() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(get("/account-max/"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+        assertEquals(Optional.of(30), accountRepository.MaxEmployeeCount());
+
     }
 
     @Test
-    void minEmployeeCount() {
+    void minEmployeeCount() throws Exception{
+        MvcResult mvcResult = mockMvc.perform(get("/account-min/"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+        assertEquals(Optional.of(25), accountRepository.MinEmployeeCount());
     }
 
     @Test
-    void meanEmployeeCount() {
+    void meanEmployeeCount() throws Exception  {
+        MvcResult mvcResult = mockMvc.perform(get("/account-mean/"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+        assertEquals(Optional.of(27.5), accountRepository.findMeanEmployeeCount());
     }
 
     @Test
-    void countOppsByCountry() {
+    void countOppsByCountry() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(get("/opps-by-country/"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+        assertTrue(mvcResult.getResponse().getContentAsString().contains(account1.getCountry().toString()));
+        assertTrue(mvcResult.getResponse().getContentAsString().contains(account2.getCountry().toString()));
     }
 
     @Test
-    void countOppsByClosedWonStatusAndCountry() {
+    void countOppsByClosedWonStatusAndCountry() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(get("/opps-by-closewon-country/"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+        assertTrue(mvcResult.getResponse().getContentAsString().contains(account2.getCountry().toString()));
     }
 
     @Test
-    void countOppsByClosedLostAndCountry() {
+    void countOppsByClosedLostAndCountry() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(get("/opps-by-closelost-country/"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+        assertTrue(mvcResult.getResponse().getContentAsString().contains(account2.getCountry().toString()));
     }
 
     @Test
-    void countOppsByOpenAndCountry() {
+    void countOppsByOpenAndCountry() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(get("/opps-by-open-country/"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+        assertTrue(mvcResult.getResponse().getContentAsString().contains(account1.getCountry().toString()));
     }
 
     @Test
-    void countOppsByCity() {
+    void countOppsByCity() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(get("/opps-by-city/"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+        assertTrue(mvcResult.getResponse().getContentAsString().contains(account1.getCity().toString()));
     }
 
     @Test
-    void countOppsByClosedWonAndCity() {
+    void countOppsByClosedWonAndCity() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(get("/opps-by-close-won-city"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+        assertTrue(mvcResult.getResponse().getContentAsString().contains(account2.getCity().toString()));
     }
 
     @Test
-    void countOppsByClosedLostAndCity() {
+    void countOppsByClosedLostAndCity() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(get("/opps-by-close-lost-city"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+        assertTrue(mvcResult.getResponse().getContentAsString().contains(account2.getCity().toString()));
     }
 
     @Test
-    void countOppsByOpenAndCity() {
+    void countOppsByOpenAndCity() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(get("/opps-by-open-city"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+        assertTrue(mvcResult.getResponse().getContentAsString().contains(account1.getCity().toString()));
     }
 
     @Test
-    void countOpportunitiesByIndustry() {
+    void countOpportunitiesByIndustry() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(get("/opps-by-industry"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+        assertTrue(mvcResult.getResponse().getContentAsString().contains(account1.getIndustry().toString()));
     }
 
     @Test
-    void countOpportunitiesByIndustryAndStatusCLOSED_WON() {
+    void countOpportunitiesByIndustryAndStatusCLOSED_WON() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(get("/opps-by-industry-close-won"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+        assertTrue(mvcResult.getResponse().getContentAsString().contains(account2.getIndustry().toString()));
     }
 
     @Test
-    void countOpportunitiesByIndustryAndStatusCLOSED_LOST() {
+    void countOpportunitiesByIndustryAndStatusCLOSED_LOST() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(get("/opps-by-industry-close-lost"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+        assertTrue(mvcResult.getResponse().getContentAsString().contains(account2.getIndustry().toString()));
     }
 
     @Test
-    void countOpportunitiesByIndustryAndStatusOPEN() {
+    void countOpportunitiesByIndustryAndStatusOPEN() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(get("/opps-by-industry-open"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+        assertTrue(mvcResult.getResponse().getContentAsString().contains(account1.getIndustry().toString()));
     }
 }

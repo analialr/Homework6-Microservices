@@ -36,23 +36,10 @@ public class EdgeServiceImpl implements EdgeService {
         leadServiceClient.delete(id);
     }
 
-    public String convertLeadFallBack(Long id, Opportunity opportunity, Exception e) {
+    public void convertLeadFallBack(Long id, Opportunity opportunity, Exception e) {
         Opportunity opportunity1 = new Opportunity(Product.BOX, 30, 123456L, Status.OPEN, 1L, 2L);
         Contact contact1 = new Contact("Mike", "mike@gmail.com", 634477559, "Irontruck", 1L);
         String response = "A default contact and opportunity has been created.";
-
-        return response;
     }
-
-    /*
-    @Override
-    public List<AccountDTO> showAccountsDTO(List<Account> accountList) {
-        for(Account account: accountList) {
-            AccountDTO accountDTO = new AccountDTO();
-        }
-        return null;
-    }
-     */
-
 
 }
