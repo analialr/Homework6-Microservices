@@ -28,7 +28,7 @@ Remember to make the application as robust as possible.
 
 ## SETUP:
 
-* Use this repository with the externalize configuration.application.<a href="https://github.com/sofidelaf/config-repo.git"> .CONFIG</a>
+* Use this repository with the externalize configuration.application.<a href="https://github.com/sofidelaf/config-repo.git"> SERVER.CONFIG</a>
 * When requesting on postman from the http://localhost:8080  :
 
     *  EUREKA SERVER       ||  8761
