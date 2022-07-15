@@ -28,7 +28,14 @@ Remember to make the application as robust as possible.
 
 ## SETUP:
 
-* Use this repository with the externalize configuration.application.<a href="https://github.com/sofidelaf/config-repo.git"> SERVER.CONFIG</a>
+* Clone this repository.
+* Use this repository with the externalize configuration.application __ <a href="https://github.com/sofidelaf/config-repo.git"> SERVER.CONFIG</a>
+Please check our database password and username and change them if needed:
+
+username=ironhacker
+password=sofi
+
+* Use the SQL files to create-validate the SQL.        
 * When requesting on postman from the http://localhost:8080  :
 
     *  EUREKA SERVER       ||  8761
