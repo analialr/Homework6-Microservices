@@ -1,5 +1,6 @@
 package com.ironhack.accountservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ironhack.accountservice.enums.Product;
 import com.ironhack.accountservice.enums.Status;
 
@@ -21,6 +22,7 @@ public class Opportunity {
     private Status status;
     @ManyToOne
     @JoinColumn(name = "account_id")
+    @JsonIgnore
     private Account account;
 
     @Column(name = "sales_rep_id")

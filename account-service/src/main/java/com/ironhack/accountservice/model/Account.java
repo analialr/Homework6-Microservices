@@ -1,5 +1,6 @@
 package com.ironhack.accountservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ironhack.accountservice.enums.Industry;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class Account {
     private String country;
 
     @OneToMany(mappedBy = "account",fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Opportunity> opportunityList;
 
     public Account() {
