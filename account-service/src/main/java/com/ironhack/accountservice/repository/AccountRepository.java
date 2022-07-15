@@ -76,9 +76,4 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     //    A count of all OPEN Opportunities by industry can be displayed by typing “Report OPEN by Industry”
     @Query("SELECT a.industry, count(o)  FROM Account a JOIN a.opportunityList o WHERE o.status= 'OPEN' GROUP BY a.industry")
     List<Object[] > countOpportunitiesByIndustryAndStatusOPEN();
-
-
-
-
-
 }
