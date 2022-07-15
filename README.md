@@ -1,4 +1,4 @@
-# __ FUNNY WEIRDOS BANK  ___ by The RUTHs 
+# __ FUNNY WEIRDOS CRM  ___ by The RUTHs 
 
 
 ## Table of Contents
